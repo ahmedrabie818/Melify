@@ -12,50 +12,134 @@
   --mainColor: #ce1212;
   --secondaryColor: #212529;
   --grayColor: #7f7f90;
-  --hoverColor:#E61414;
+  --hoverColor: #e61414;
   --transitionDuration: 0.3s;
   --gap: 0.9375rem;
 }
+
+/* ========== إرجاع قيم المتصفح الأصلية اللي Bootstrap بيغيّرها ========== */
+/* (عشان الشكل يفضل زي ما هو بالظبط) */
+body {
+  margin: 0;
+  font-family: initial;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  color: #000;
+  background-color: #fff;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: bold;
+  line-height: normal;
+  color: inherit;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.17em;
+}
+p {
+  margin: 0;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+a,
+a:hover {
+  text-decoration: none;
+}
+img,
+svg {
+  vertical-align: baseline;
+}
+input,
+button,
+select,
+textarea {
+  margin: 0;
+  font: revert;
+  line-height: revert;
+}
+button,
+[type="submit"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+/* Bootstrap عنده كلاس اسمه .h2 فبنصفّر تأثيره */
+.h2 {
+  margin: 0;
+  line-height: normal;
+}
+/* الـcontainer: 80% على الشاشات الكبيرة زي الأصل، وبيتجاوب تحت كده */
+@media (min-width: 992px) {
+  .container {
+    width: 80%;
+    max-width: none;
+  }
+}
+
 ::selection {
   background-color: var(--mainColor);
   color: #fff;
 }
-nav {
-  position: fixed;
-  width: 100%;
+
+/* ========== NAVBAR ========== */
+nav.navbar {
+  padding: 0;
   z-index: 999;
   background-color: #fff;
   box-shadow: 0px 0px 14px 0px #0000001b;
 }
-nav .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 25px 5px;
-  flex-wrap: wrap;
-  margin: auto;
-  width: 80%;
+.navbar .container {
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
-.logo h3 a {
+.navbar .navbar-brand {
   font-size: 30px;
+  font-weight: 700;
   color: var(--secondaryColor);
   font-family: var(--contentFont);
   position: relative;
+  padding: 0;
+  margin: 0;
 }
-
-.logo h3 a::after {
+.navbar .navbar-brand::after {
   content: ".";
   color: var(--mainColor);
 }
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+  color: var(--secondaryColor);
+}
 
-.links ul {
-  list-style: none;
-  display: flex;
+@media (min-width: 992px) {
+  .navbar .navbar-collapse {
+    flex-grow: 0;
+  }
 }
-.links ul li {
-  padding: 5px 15px;
+.navbar .navbar-nav .nav-item {
+  padding: 5px 0;
 }
-.links ul li a {
+@media (min-width: 992px) {
+  .navbar .navbar-nav .nav-item {
+    padding: 5px 15px;
+  }
+}
+.navbar .navbar-nav .nav-link {
+  display: inline-block;
+  padding: 0;
   font-family: var(--contentFont);
   color: var(--grayColor);
   font-size: 17px;
@@ -63,7 +147,7 @@ nav .container {
   transition-duration: var(--transitionDuration);
   position: relative;
 }
-.links ul li a::after {
+.navbar .navbar-nav .nav-link::after {
   content: "";
   background-color: var(--mainColor);
   width: 0;
@@ -73,10 +157,11 @@ nav .container {
   left: 0;
   transition: var(--transitionDuration);
 }
-.links ul li a:hover {
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
   color: var(--secondaryColor);
 }
-.links ul li a:hover::after {
+.navbar .navbar-nav .nav-link:hover::after {
   width: 100%;
 }
 
@@ -85,25 +170,25 @@ nav .icon i {
   cursor: pointer;
   font-size: 25px;
 }
+
+/* ========== HOME ========== */
 #Home {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #eee;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 70px;
+}
+@media (min-width: 992px) {
+  #Home {
+    padding-top: 0;
+  }
 }
 #Home .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap-reverse;
-  padding: 40px 5px;
-  width: 80%;
-  margin: auto;
-}
-#Home .container .img {
-  width: 40%;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 #Home .container img:hover {
   animation-name: shake;
@@ -152,13 +237,15 @@ nav .icon i {
   }
 }
 
-#Home .container .caption {
-  width: 40%;
-}
 #Home .container .caption h1 {
   font-size: 65px;
   font-family: var(--headingFont);
   color: #37373f;
+}
+@media (max-width: 575.98px) {
+  #Home .container .caption h1 {
+    font-size: 48px;
+  }
 }
 #Home .container .caption p {
   font-size: 16px;
@@ -182,10 +269,10 @@ nav .icon i {
   background-color: var(--mainColor);
   flex-shrink: 0;
   transition: var(--transitionDuration);
-
 }
 .btns .first-btn:hover {
-  background-color: var(--hoverColor)}
+  background-color: var(--hoverColor);
+}
 
 .btns .second-btn {
   font-family: var(--contentFont);
@@ -230,15 +317,14 @@ nav .icon i {
   z-index: 22;
 }
 
-
+/* ========== CHEFS ========== */
 #Chefs {
   padding: 20px;
   scroll-padding: 200px;
 }
 #Chefs .container {
-  padding: 40px 0px;
-  width: 80%;
-  margin: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 #Chefs .container h2 {
   font-size: 14px;
@@ -257,27 +343,20 @@ nav .icon i {
   color: var(--mainColor);
 }
 #Chefs .container .chefs-cards {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding-top: 50px;
 }
-.chefs-cards .card {
+.chefs-cards .chef-card {
   box-shadow: 3px 3px 15px 0px rgba(0, 0, 0, 0.1);
-  width: 32%;
   transition: var(--transitionDuration);
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-
 }
-.chefs-cards .card:hover {
+.chefs-cards .chef-card:hover {
   transform: scale(1.06);
 }
 
-
-
-.chefs-cards .card .social-box {
+.chefs-cards .chef-card .social-box {
   position: absolute;
   top: 20px;
   right: -80px;
@@ -287,28 +366,28 @@ nav .icon i {
   text-align: center;
   transition: var(--transitionDuration);
 }
-.chefs-cards .card .social-box li {
+.chefs-cards .chef-card .social-box li {
   padding: 10px 5px;
 }
 
-.chefs-cards .card .social-box li a i {
+.chefs-cards .chef-card .social-box li a i {
   color: #37373f66;
   font-size: 18px;
   transition: var(--transitionDuration);
 }
-.chefs-cards .card .social-box li a i:hover {
+.chefs-cards .chef-card .social-box li a i:hover {
   color: #37373f;
 }
-.chefs-cards .card:hover .social-box {
+.chefs-cards .chef-card:hover .social-box {
   transition-delay: 0.5s;
   top: 25px;
   right: 15px;
 }
-.chefs-cards .card .img {
+.chefs-cards .chef-card .img {
   position: relative;
 }
 
-.chefs-cards .card .img::before {
+.chefs-cards .chef-card .img::before {
   content: "";
   position: absolute;
   bottom: -10px;
@@ -320,39 +399,40 @@ nav .icon i {
   background-repeat: repeat-x;
 }
 
-.chefs-cards .card .img img {
+.chefs-cards .chef-card .img img {
   width: 100%;
   display: block;
 }
-.chefs-cards .card .caption {
+.chefs-cards .chef-card .caption {
   text-align: center;
   padding: 10px 25px 25px;
 }
 
-.chefs-cards .card .caption h3 {
+.chefs-cards .chef-card .caption h3 {
   font-weight: bold;
   font-family: var(--contentFont);
 }
-.chefs-cards .card .caption span {
+.chefs-cards .chef-card .caption span {
   font-size: 14px;
   color: #7f7f90;
   display: inline-block;
   margin: 5px 0 10px;
 }
-.chefs-cards .card .caption p {
+.chefs-cards .chef-card .caption p {
   font-size: 15px;
   font-style: italic;
   color: #7f7f90;
   font-family: var(--contentFont);
   font-weight: 400;
 }
+
+/* ========== GALLERY ========== */
 #Gallary {
   background-color: #eee;
 }
 #Gallary .container {
-  width: 80%;
-  margin: auto;
-  padding: 40px 5px;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 #Gallary .container .h2 {
   font-family: var(--contentFont);
@@ -373,18 +453,7 @@ nav .icon i {
 }
 
 #Gallary .container .gallery-photos {
-  display: flex;
-  justify-content: space-between;
   margin-top: 20px;
-}
-#Gallary .container .gallery-photos .left {
-  width: 32%;
-}
-#Gallary .container .gallery-photos .center {
-  width: 32%;
-}
-#Gallary .container .gallery-photos .right {
-  width: 32%;
 }
 
 #Gallary .container .gallery-photos .item {
@@ -424,10 +493,11 @@ nav .icon i {
 .item:hover .layer {
   top: 0;
 }
+
+/* ========== CONTACT ========== */
 #Contact .container {
-  padding: 40px 5px;
-  width: 80%;
-  margin: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 #Contact .container .h2 {
@@ -449,21 +519,25 @@ nav .icon i {
 #Contact .container .heading span {
   color: var(--mainColor);
 }
-#Contact .container .details {
-  display: flex;
-  justify-content: space-between;
-  margin: 25px 0;
-  flex-wrap: wrap;
-  gap: 10px;
+#Contact iframe {
+  display: block;
 }
-#Contact .container .details .card {
-  width: calc(100% / 2 - 10px);
+@media (max-width: 575.98px) {
+  #Contact iframe {
+    height: 350px;
+  }
+}
+#Contact .container .details {
+  margin-top: calc(25px - var(--bs-gutter-y));
+  margin-bottom: 25px;
+}
+#Contact .container .details .info-card {
   background-color: #f5f5f5;
   padding: 25px;
   display: flex;
   align-items: center;
 }
-#Contact .container .details .card .icon {
+#Contact .container .details .info-card .icon {
   background-color: var(--mainColor);
   width: 50px;
   height: 50px;
@@ -472,25 +546,27 @@ nav .icon i {
   align-items: center;
   justify-content: center;
   margin-right: 10px;
+  flex-shrink: 0;
 }
-#Contact .container .details .card .icon i {
+#Contact .container .details .info-card .icon i {
   color: white;
   font-size: 16px;
 }
-#Contact .container .details .card h3 {
+#Contact .container .details .info-card h3 {
   font-size: 20px;
   margin-bottom: 5px;
   color: #7d7d7d;
   font-weight: 700;
   font-family: var(--contentFont);
 }
-#Contact .container .details .card p {
+#Contact .container .details .info-card p {
   color: #212529;
   font-family: var(--contentFont);
 }
-#Contact .container .details .card a {
+#Contact .container .details .info-card a {
   color: #212529;
   font-family: var(--contentFont);
+  overflow-wrap: anywhere;
 }
 
 form {
@@ -502,13 +578,7 @@ form {
   gap: 10px;
 }
 .group-input {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  width: 100%;
-}
-.group-input input {
-  width: calc((100% - 10px) / 2);
+  align-self: stretch;
 }
 form input {
   width: 100%;
@@ -546,8 +616,10 @@ form button {
   transition: var(--transitionDuration);
 }
 form button:hover {
-background-color: var(--hoverColor);
+  background-color: var(--hoverColor);
 }
+
+/* ========== FOOTER ========== */
 footer {
   background-image: linear-gradient(#0009, #0009), url(images/download.jpg);
   background-size: cover;
@@ -555,15 +627,8 @@ footer {
   color: #fff;
 }
 footer .container {
-  width: 80%;
-  margin: auto;
-  padding: 40px 5px;
-  display: flex;
-  gap: 1.25rem;
-}
-footer .container .about,.contact-details  {
-  width: 35%;
-
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
 footer .container .about div {
@@ -620,8 +685,11 @@ footer .container .subscription .sunscription-group {
 
 footer .container .subscription .sunscription-group input {
   flex-grow: 1;
+  min-width: 0;
+  width: auto;
   padding: 10px;
   outline: none;
+  border: 2px solid #e8e3e3;
 }
 footer .container .subscription .sunscription-group button {
   all: initial;
@@ -630,6 +698,7 @@ footer .container .subscription .sunscription-group button {
   padding: 10px;
   font-size: 15px;
   color: #fff;
+  white-space: nowrap;
   transition: var(--transitionDuration);
 }
 footer .container .subscription .sunscription-group button:hover {
@@ -675,7 +744,8 @@ footer .container .contact-details li {
   align-items: center;
   gap: 8px;
 }
-footer .container .contact-details li a ,footer .container .contact-details li span{
+footer .container .contact-details li a,
+footer .container .contact-details li span {
   color: white;
   font-family: var(--contentFont);
 }
@@ -683,7 +753,5 @@ footer .container .contact-details li a ,footer .container .contact-details li s
 footer .container .contact-details i {
   color: var(--mainColor);
   font-size: 22px;
+  flex-shrink: 0;
 }
-
-
-
